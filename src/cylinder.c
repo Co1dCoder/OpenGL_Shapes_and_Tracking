@@ -25,6 +25,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "matrixOperations.h"
+#include "geometricShapes.h"
 
 #define BUFFER_OFFSET( offset )   ((GLvoid*) (offset))
 
@@ -38,55 +39,6 @@ GLfloat angle = 0.0;
 GLfloat theta = (0.1*M_PI)/180;
 //matrixRotateX((36.0*M_PI)/180, ctm);
 
-void getColor(vec4 *colors, int index) {
-	vec4 v;
-	v[0] = rand()/(GLfloat)RAND_MAX;
-	v[1] = rand()/(GLfloat)RAND_MAX;
-	v[2] = rand()/(GLfloat)RAND_MAX;
-	v[3] = rand()/(GLfloat)RAND_MAX;
-	vectorCopy(v, colors[index]);
-	vectorCopy(v, colors[index+1]);
-	vectorCopy(v, colors[index+2]);
-}
-
-void cylinder(vec4 *vertices, vec4 *colors, int num_vertices) {
-	GLfloat theta = ((360.0/(num_vertices/12))*M_PI)/180;
-	GLfloat angle = theta;
-	GLfloat r = 0.5;
-	vec4 tside1 = { r, r, 0.0, 1.0};
-	vec4 bside1 = { r, -r, 0.0, 1.0};
-	vec4 bottom = { 0.0, -r, 0.0, 1.0};
-	vec4 top = { 0.0, r, 0.0, 1.0};
-	int i;
-	for( i = 0 ; i< num_vertices/12 ; i++){
-		vec4 bside2 = { r*cos(angle), -r, r*sin(angle), 1.0};
-		vec4 tside2;
-		vectorCopy(bside2, tside2);
-		tside2[1]+=1.0;
-		
-		vectorCopy(top, vertices[i*12]);
-		vectorCopy(tside2, vertices[(i*12)+1]);
-		vectorCopy(tside1, vertices[(i*12)+2]);
-		vectorCopy(tside1, vertices[(i*12)+3]);
-		vectorCopy(bside2, vertices[(i*12)+4]);
-		vectorCopy(bside1, vertices[(i*12)+5]);
-		vectorCopy(bside2, vertices[(i*12)+6]);
-		vectorCopy(tside1, vertices[(i*12)+7]);
-		vectorCopy(tside2, vertices[(i*12)+8]);
-		vectorCopy(bottom, vertices[(i*12)+9]);
-		vectorCopy(bside1, vertices[(i*12)+10]);
-		vectorCopy(bside2, vertices[(i*12)+11]);		
-		
-		vectorCopy(bside2, bside1);
-		vectorCopy(tside2, tside1);
-		angle += theta;				
-		
-		getColor(colors, i*12);
-		getColor(colors, (i*12)+3);
-		getColor(colors, (i*12)+6);	
-		getColor(colors, (i*12)+9);
-	}
-}
 
 void init(void)
 {
