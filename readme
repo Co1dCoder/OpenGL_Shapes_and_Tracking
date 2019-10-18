@@ -1,0 +1,16 @@
+This project was for CS1566 Introduction to Graphics
+
+Project:
+The idea behind the project was to generate different geometric shapes using mathmatical functions. Once the shapes are made you can click and drag to rotate them like a trackball. They will idly spin in the same direction as your rotation until you click again. You can also zoom in and out with the mouse wheel.
+
+Installation and Usage:
+Source code lives in src and header files are in lib. Run make all on the makefile located in source. This will create executable binaries in the source file. Run the binary to view the corresponding shape i.e. sphere will make and display a sphere. Note you can target a specific shape to be made for example: make torus.
+
+Files:
+cylinder.c, sphere.c, torus.c, spring.c: Have main functions, calls specfic shape generation function, and functions for tracking, rotating, etc
+
+track.c: code and data structures for actually making matrics to zoom in and out, rotate with mouse down and drag, and spin idly
+
+geometricShapes.c: functions to generate the different shapes
+
+matrixOperations.c: library of matrix and vector operations

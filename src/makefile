@@ -31,7 +31,7 @@ torus: torus.c $(OBJ)
 spring: spring.c $(OBJ)
 	$(CC) -o $@ $^ $(CFLAGS) 
 
-$(ODIR)/%.o: %.c $(DEPS)
+$(ODIR)/%.o: %.c $(IDIR)/%.h
 	$(CC) -c -o $@ $< $(CFLAGS)
 
 .PHONY: clean
